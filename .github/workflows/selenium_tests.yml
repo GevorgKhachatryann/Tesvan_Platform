@@ -1,0 +1,41 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '21'
+
+      - name: Build with Maven
+        run: mvn -B clean test
+
+      - name: Archive test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: target/surefire-reports
+
+      - name: Generate Allure report
+        run: |
+          wget -O allure.zip https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.15.0/allure-commandline-2.15.0.zip
+          mkdir allure
+          tar -zxvf allure.zip -C allure --strip-components 1
+          allure/bin/allure generate target/allure-results --clean -o target/allure-report
+
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-report
+          path: target/allure-report
