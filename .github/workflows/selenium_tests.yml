@@ -2,8 +2,6 @@ name: Selenium Tests
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
   test:
