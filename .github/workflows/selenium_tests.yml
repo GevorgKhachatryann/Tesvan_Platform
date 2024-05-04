@@ -32,10 +32,8 @@ jobs:
 
       - name: Build and Test
         if: ${{inputs.xmlsname}}
-        run: >
-          mvn clean test
-          -Dsurefire.suiteXmlFile=${{inputs.xmlsname}}
-          -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
+        run: mvn clean test
+
 
       - name: Generate Allure Report
         run: |
