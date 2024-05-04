@@ -21,8 +21,24 @@ jobs:
       - name: Build with Maven
         run: mvn clean test
 
-      - name: Allure report
-        # You may pin to the exact commit or the version.
-        # uses: afiore/action-allure-report@e43ebd6f4f4c74b07b1eb02f042902bbe6786a19
-        uses: afiore/action-allure-report@v0.1.0
+       # Install Allure Command Line Tool
+      - name: Install Allure
+        run: |
+          # Download Allure package
+          Invoke-WebRequest -Uri https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.0/allure-commandline-2.17.0.zip -OutFile allure.zip
+          # Extract Allure package
+          Expand-Archive -Path allure.zip -DestinationPath allure
+          # Add Allure to PATH
+          $env:PATH += ";$(pwd)\allure\bin"
+      
+      # Generate Allure Report
+      - name: Generate Allure Report
+        run: allure generate --clean
+
+      # Publish Allure Report as artifact
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-report
+          path: allure-report
           
