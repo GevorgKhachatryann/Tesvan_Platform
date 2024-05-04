@@ -29,11 +29,10 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v3
+      - name: Chrome Setup
+        uses: browser-actions/setup-chrome@v1
+        run: chrome --version
 
-      - name: Set up ChromeDriver
-        uses: browser-actions/setup-chromedriver@v3
       - name: Build and Test
         run: mvn clean test
 
