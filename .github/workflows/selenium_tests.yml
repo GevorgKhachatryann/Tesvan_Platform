@@ -1,40 +1,45 @@
-name: Selenium Tests
+name: CI/CD Pipeline
 
 on:
   push:
+    branches:
+      - master  # Adjust branch name as per your requirements
+  pull_request:
+    branches:
+      - master  # Adjust branch name as per your requirements
 
 jobs:
-  test:
-    runs-on: windows-latest
-    
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up JDK
+      - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
-          java-version: '21'
-          distribution: 'adopt'
+          java-version: 11
 
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
-      - name: Build with Maven
+      - name: Build and Test
         run: mvn clean test
 
-      - name: Install Allure
-        run: |
-          # Download Allure package
-          wget https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.0/allure-commandline-2.17.0.zip -OutFile allure.zip
-          # Extract Allure package
-          Expand-Archive -Path allure.zip -DestinationPath allure
-          # Add Allure to PATH
-          $env:PATH += ";$(pwd)/allure/bin"
-      
       - name: Generate Allure Report
-        run: allure.bat generate --clean
+        run: |
+          wget -O allure-2.22.0.tgz https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.22.0/allure-commandline-2.22.0.tgz
+          tar -zxvf allure-2.22.0.tgz
+          ./allure-2.22.0/bin/allure generate target/allure-results --clean -o target/allure-report
 
       - name: Upload Allure Report
         uses: actions/upload-artifact@v2
         with:
           name: allure-report
-          path: allure-report
+          path: target/allure-report
