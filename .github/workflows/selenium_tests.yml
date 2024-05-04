@@ -19,23 +19,10 @@ jobs:
 
 
       - name: Build with Maven
-        run: mvn -B clean test
+        run: mvn clean test
 
-      - name: Archive test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: target/surefire-reports
-
-      - name: Generate Allure report
-        run: |
-          wget -O allure.zip https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.15.0/allure-commandline-2.15.0.zip
-          mkdir allure
-          tar -zxvf allure.zip -C allure --strip-components 1
-          allure/bin/allure generate target/allure-results --clean -o target/allure-report
-
-      - name: Upload Allure report
-        uses: actions/upload-artifact@v2
-        with:
-          name: allure-report
-          path: target/allure-report
+      - name: Allure report
+        # You may pin to the exact commit or the version.
+        # uses: afiore/action-allure-report@e43ebd6f4f4c74b07b1eb02f042902bbe6786a19
+        uses: afiore/action-allure-report@v0.1.0
+          
