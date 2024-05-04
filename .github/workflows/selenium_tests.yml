@@ -30,9 +30,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - uses: browser-actions/setup-chrome@v1
-      - run: chrome --version
-      - name: Build and Test
+      - name: Set up Chromium
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Check Chromium version
+        run: chromium --version
+
+      - name: Run tests
         run: mvn clean test
 
 
