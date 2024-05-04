@@ -31,7 +31,6 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build and Test
-        if: ${{inputs.xmlsname}}
         run: mvn clean test
 
 
