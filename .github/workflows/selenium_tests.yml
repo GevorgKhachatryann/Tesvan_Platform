@@ -16,9 +16,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - uses: browser-actions/setup-chrome@v1
-      - run: chrome --version
-
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
@@ -33,6 +30,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - uses: browser-actions/setup-chrome@v1
+      - run: chrome --version
       - name: Build and Test
         run: mvn clean test
 
