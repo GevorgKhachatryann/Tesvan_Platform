@@ -16,7 +16,7 @@ public class setup {
 
     @BeforeMethod
     public static void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(25));
         driver.manage().window().maximize();

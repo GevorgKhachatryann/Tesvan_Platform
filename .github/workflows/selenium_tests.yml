@@ -29,6 +29,14 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - name: Set up ChromeDriver
+        run: |
+          wget -q -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+          LATEST_RELEASE=$(cat /tmp/chromedriver.zip)
+          wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$LATEST_RELEASE/chromedriver_linux64.zip
+          unzip -o /tmp/chromedriver.zip -d /tmp/
+          sudo mv /tmp/chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Set up Chromium
         uses: browser-actions/setup-chrome@v1
