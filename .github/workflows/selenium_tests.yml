@@ -36,10 +36,7 @@ jobs:
 
       - name: Install Allure CLI
         run: |
-          wget -O allure.tar.gz https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.0/allure-commandline-2.17.0.tgz
-          tar -zxvf allure.tar.gz -C /tmp/
-          sudo mv /tmp/allure-2.17.0/bin/allure /usr/local/bin/
-          sudo chmod +x /usr/local/bin/allure
+          sudo apt-get update && sudo apt-get install -y allure
 
       - name: Generate Allure report
         run: allure generate --clean
