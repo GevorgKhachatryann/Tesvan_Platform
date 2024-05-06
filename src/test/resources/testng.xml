@@ -2,7 +2,7 @@
 <suite name="Selenium Tests">
     <test name="Regression">
         <classes>
-            <class name="tests.test"/>
+            <class name="tests.RegistrationTest"/>
             <!-- Add more test classes here as needed -->
         </classes>
     </test>
