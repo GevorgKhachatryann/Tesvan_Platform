@@ -39,8 +39,7 @@ jobs:
           # Download Allure
           curl -o allure.zip -L https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.15.0/allure-commandline-2.15.0.zip
           
-          # Extract Allure
-          tar -xf allure.zip
+          Expand-Archive -Path allure.zip -DestinationPath target\allure-commandline
           
           # Set Allure bin directory in PATH
           $env:PATH += ";$(Resolve-Path .\allure-commandline-2.15.0\bin)"
