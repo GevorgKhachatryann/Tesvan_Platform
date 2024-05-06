@@ -34,15 +34,17 @@ jobs:
       - name: Run tests
         run: mvn clean test
 
-      - name: Install Allure CLI
+      ## Allure report
+      - name: Generate Allure Report
         run: |
-          sudo apt-get update && sudo apt-get install -y allure
-
-      - name: Generate Allure report
-        run: allure generate --clean
-
-      - name: Upload Allure report artifacts
-        uses: actions/upload-artifact@v2
+          npm install -g allure-commandline
+          allure generate allure-results -o allure-report --clean
+          
+          ## Deploy step
+      - name: Deploy Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: allure-report
-          path: allure-report
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          publish_branch: allure-report
+          keep_files: false
