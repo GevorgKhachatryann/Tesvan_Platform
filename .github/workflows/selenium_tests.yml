@@ -34,25 +34,18 @@ jobs:
       - name: Run tests
         run: mvn clean test
 
-      - name: Set up Allure CLI
+      - name: Install Allure CLI
         run: |
-          wget -O allure-2.17.0.tgz https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.0/allure-commandline-2.17.0.tgz
-          tar -zxvf allure-2.17.0.tgz -C /tmp/
+          wget -O allure.tar.gz https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.0/allure-commandline-2.17.0.tgz
+          tar -zxvf allure.tar.gz -C /tmp/
           sudo mv /tmp/allure-2.17.0/bin/allure /usr/local/bin/
           sudo chmod +x /usr/local/bin/allure
 
       - name: Generate Allure report
-        run: mvn allure:report
+        run: allure generate --clean
 
       - name: Upload Allure report artifacts
         uses: actions/upload-artifact@v2
         with:
           name: allure-report
-          path: target/site/allure-maven-plugin
-
-      - name: View Allure report in GitHub Actions
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const artifactURL = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}/artifacts`;
-            console.log(`Allure report is available at: ${artifactURL}/allure-report/index.html`);
+          path: allure-report
