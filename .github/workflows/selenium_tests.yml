@@ -36,17 +36,20 @@ jobs:
 
       - name: Generate Allure Report
         run: |
-          # Download Allure
+          # Download Allure zip file
           curl -o allure.zip -L https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.15.0/allure-commandline-2.15.0.zip
-          
-          # Extract Allure
-          tar -xf allure.zip
-          
+      
+          # Create directory to extract Allure
+          mkdir target\allure-commandline
+      
+          # Extract Allure using tar
+          tar -xf allure.zip -C target\allure-commandline
+      
           # Set Allure bin directory in PATH
-          $env:PATH += ";$(Resolve-Path .\allure-commandline-2.15.0\bin)"
-          
+          $env:PATH += ";$(Resolve-Path .\target\allure-commandline\bin)"
+      
           # Generate Allure report
-          allure generate target/allure-results --clean -o target/allure-report
+          allure generate target\allure-results --clean -o target\allure-report
       
 
       - name: Publish Allure Report
