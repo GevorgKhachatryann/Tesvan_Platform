@@ -34,16 +34,19 @@ jobs:
       - name: Run tests
         run: mvn clean test
 
-      - name: Build test report
-        uses: simple-elf/allure-report-action@v1.7
-        with:
-          allure_results: target/allure-results
-          allure_report: allure-report
+      - name: Generate Allure Report
+        run: |
+          # Download and extract Allure
+          curl -o allure.zip -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.15.0/allure-commandline-2.15.0.zip
+          tar -zxvf allure.zip -C .
+          rm allure.zip
+          export PATH=$PATH:/path/to/allure/bin  # Adjust path to Allure bin directory
+          
+          # Generate Allure report
+          allure generate target/allure-results --clean -o target/allure-report
 
-      - name: Publish test report
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
+      - name: Publish Allure Report
+        uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-report
+          name: allure-report
+          path: target/allure-report
