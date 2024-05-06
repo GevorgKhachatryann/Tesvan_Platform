@@ -34,13 +34,30 @@ jobs:
       - name: Run tests
         run: mvn clean test
 
-      - name: Generate Allure Report
-        id: allure
-        run: |
-          allure generate target/allure-results --clean -o target/allure-report
-          echo "::set-output name=url::file://${PWD}/target/allure-report/index.html"
+      - name: Test marketplace action
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: build/allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
 
-          - name: Display Allure Report URL
-            if: always()
-            run: |
-              echo "Allure Report URL: ${{ steps.allure.outputs.url }}"
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
+
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: 'Test report'
+          state: 'success'
+          sha: ${{ github.event.pull_request.head.sha }}
+          target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
