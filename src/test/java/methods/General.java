@@ -67,4 +67,9 @@ public class General extends setup {
         actions.moveToElement(element).perform();
     }
 
+    public boolean isDisabled(By selector) {
+        WebElement element = driver.findElement(selector);
+        return !element.isEnabled();
+    }
+
 }
