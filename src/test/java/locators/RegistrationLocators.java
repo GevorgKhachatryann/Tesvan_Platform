@@ -6,13 +6,13 @@ public class RegistrationLocators {
     public By lastName = By.cssSelector("[placeholder=\"Smith\"]");
     public By email = By.cssSelector("[placeholder=\"johnsmith@example.com\"]");
     public By phone = By.className("PhoneInputInput");
-    public By datePicker = By.cssSelector("label > div > div > div > div > div > button");
+    public By datePicker = By.cssSelector("[aria-label=\"Choose date\"]");
     public By arrowDropDown = By.cssSelector("[aria-label=\"calendar view is open, switch to year view\"]");
     public By year = By.xpath("//button[contains(text(), '2000')]");
     public By month = By.xpath("//button[contains(text(), 'Jan')]");
     public By day = By.xpath("//button[text()=6]");
     public By gender = By.xpath("//*[@id=\"root\"]/div/main/div/div[2]/div/div[3]/form/div[1]/div[6]/label/div/div/label/span");
-    public By countryArrowBtn = By.cssSelector("[placeholder=\"Select your country\"]");
+    public By countryArrowBtn = By.cssSelector("[name=\"country\"]");
     public By city = By.cssSelector("[placeholder=\"Where do you live?\"]");
     public By nextStep = By.xpath("//*[@id=\"root\"]/div/main/div/div[2]/div/div[3]/form/div[2]/button");
     public By englishArrowBtn = By.cssSelector("[placeholder=\"Select your English level\"]");
