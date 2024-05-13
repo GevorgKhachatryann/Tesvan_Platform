@@ -36,12 +36,14 @@ jobs:
 
       ## Allure report
       - name: Generate Allure Report
+        if: always()
         run: |
           npm install -g allure-commandline
           allure generate allure-results -o allure-report --clean
           
-          ## Deploy step
+      ## Deploy step
       - name: Deploy Allure Report to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
