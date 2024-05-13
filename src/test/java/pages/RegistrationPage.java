@@ -51,9 +51,9 @@ public class RegistrationPage extends setup {
     public void handleDatePicker() {
         General general = new General(driver);
         RegistrationLocators locators = new RegistrationLocators();
-        general.waitForElementToBeVisible(locators.datePicker,10);
+        general.waitForElementToBeVisible(locators.datePicker,25);
         general.clickElement(locators.datePicker);
-        general.waitForElementToBeClickable(locators.arrowDropDown,15);
+        general.waitForElementToBeClickable(locators.arrowDropDown,25);
 
         general.clickElement(locators.arrowDropDown);
         // Choose a random year
