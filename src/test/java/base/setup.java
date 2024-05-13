@@ -23,6 +23,7 @@ public class setup {
         options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
     }
 
     @AfterMethod
