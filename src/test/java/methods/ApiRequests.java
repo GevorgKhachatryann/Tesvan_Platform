@@ -20,6 +20,7 @@ import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +29,8 @@ import me.shivzee.util.JMailBuilder;
 import me.shivzee.JMailTM;
 
 import javax.security.auth.login.LoginException;
+
+import static base.setup.driver;
 
 public class ApiRequests {
     public static WebDriverWait wait;
@@ -75,6 +78,7 @@ public class ApiRequests {
     }
 
     public JSONObject retrieveVerificationEmail() throws IOException {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
         userData data = new userData();
 
         try{

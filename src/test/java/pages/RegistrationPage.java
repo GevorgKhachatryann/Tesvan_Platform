@@ -12,8 +12,6 @@ import org.openqa.selenium.WebElement;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RegistrationPage extends setup {
@@ -60,14 +58,14 @@ public class RegistrationPage extends setup {
 
         general.clickElement(locators.arrowDropDown);
         // Choose a random year
-        general.waitForElementToBeClickable(locators.year,10);
+//        general.waitForElementToBeClickable(locators.year,10);
         List<WebElement> yearOptions = driver.findElements(locators.year);
         if (!yearOptions.isEmpty()) {
             int randomYearIndex = new Random().nextInt(yearOptions.size());
             WebElement randomYearButton = yearOptions.get(randomYearIndex);
             randomYearButton.click();
         }
-        general.waitForElementToBeClickable(locators.month,10);
+//        general.waitForElementToBeClickable(locators.month,10);
         // Choose a random month
         List<WebElement> monthOptions = driver.findElements(locators.month);
         if (!monthOptions.isEmpty()) {
