@@ -51,7 +51,7 @@ public class RegistrationPage extends setup {
     public void handleDatePicker() {
         General general = new General(driver);
         RegistrationLocators locators = new RegistrationLocators();
-        general.waitForElementToBeClickable(locators.datePicker,10);
+//        general.waitForElementToBeClickable(locators.datePicker,10);
 
         general.clickElement(locators.datePicker);
         general.waitForElementToBeClickable(locators.arrowDropDown,15);
