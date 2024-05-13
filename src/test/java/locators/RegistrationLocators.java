@@ -6,7 +6,7 @@ public class RegistrationLocators {
     public By lastName = By.cssSelector("[placeholder=\"Smith\"]");
     public By email = By.cssSelector("[placeholder=\"johnsmith@example.com\"]");
     public By phone = By.className("PhoneInputInput");
-    public By datePicker = By.cssSelector("[data-testid=\"CalendarIcon\"]");
+    public By datePicker = By.cssSelector("div:nth-child(5) > label > div > div > div > div > div > button");
     public By arrowDropDown = By.cssSelector("[aria-label=\"calendar view is open, switch to year view\"]");
     public By year = By.xpath("//button[contains(text(), '2000')]");
     public By month = By.xpath("//button[contains(text(), 'Jan')]");
