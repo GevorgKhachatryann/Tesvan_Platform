@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout Repository
@@ -22,14 +22,14 @@ jobs:
           java-version: '21'
           distribution: 'adopt'
 
-      - name: Set up ChromeDriver
-        run: |
-          wget -q -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/LATEST_RELEASE
-          LATEST_RELEASE=$(cat /tmp/chromedriver.zip)
-          wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$LATEST_RELEASE/chromedriver_linux64.zip
-          unzip -o /tmp/chromedriver.zip -d /tmp/
-          sudo mv /tmp/chromedriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
+#      - name: Set up ChromeDriver
+#        run: |
+#          wget -q -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+#          LATEST_RELEASE=$(cat /tmp/chromedriver.zip)
+#          wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$LATEST_RELEASE/chromedriver_linux64.zip
+#          unzip -o /tmp/chromedriver.zip -d /tmp/
+#          sudo mv /tmp/chromedriver /usr/local/bin/
+#          sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Run tests
         run: mvn clean test
