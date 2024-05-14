@@ -6,13 +6,18 @@ import data.userData;
 import locators.RegistrationLocators;
 import methods.General;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
+import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+
+import static base.setup.driver;
 
 public class RegistrationPage extends setup {
     private final WebDriver driver;
@@ -51,37 +56,60 @@ public class RegistrationPage extends setup {
     public void handleDatePicker() {
         General general = new General(driver);
         RegistrationLocators locators = new RegistrationLocators();
-        general.waitForElementToBeVisible(locators.datePicker,10);
-        general.clickElement(locators.datePicker);
+//        general.waitForElementToBeVisible(locators.datePicker,25);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+//        WebElement clickable = driver.findElement(By.id("datePicker"));
+//        new Actions(driver)
+//                .click(clickable)
+//                .perform();
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", driver.findElement(By.id("datePicker")));
+//        general.clickElement(locators.datePicker);
 //        general.waitForElementToBeClickable(locators.arrowDropDown,25);
+//        WebElement arrow = driver.findElement(locators.arrowDropDown);
 //
+//        new Actions(driver)
+//                .click(arrow)
+//                .perform();
 //        general.clickElement(locators.arrowDropDown);
-//        // Choose a random year
-////        general.waitForElementToBeClickable(locators.year,10);
+        // Choose a random year
+//        general.waitForElementToBeClickable(locators.year,10);
 //        List<WebElement> yearOptions = driver.findElements(locators.year);
 //        if (!yearOptions.isEmpty()) {
 //            int randomYearIndex = new Random().nextInt(yearOptions.size());
 //            WebElement randomYearButton = yearOptions.get(randomYearIndex);
 //            randomYearButton.click();
 //        }
-////        general.waitForElementToBeClickable(locators.month,10);
-//        // Choose a random month
+//        general.waitForElementToBeClickable(locators.month,10);
+        // Choose a random month
 //        List<WebElement> monthOptions = driver.findElements(locators.month);
 //        if (!monthOptions.isEmpty()) {
 //            int randomMonthIndex = new Random().nextInt(monthOptions.size());
 //            WebElement randomMonthButton = monthOptions.get(randomMonthIndex);
 //            randomMonthButton.click();
 //        }
-        general.waitForElementToBeClickable(locators.day,20);
+//        general.waitForElementToBeClickable(locators.day,20);
 
         // Choose a random day
-        List<WebElement> dayOptions = driver.findElements(locators.day);
-        if (!dayOptions.isEmpty()) {
-            int randomDayIndex = new Random().nextInt(dayOptions.size());
-            WebElement randomDayButton = dayOptions.get(randomDayIndex);
-            randomDayButton.click();
-        }
-        general.clickElement(locators.datePicker);
+//        List<WebElement> dayOptions = driver.findElements(locators.day);
+//        if (!dayOptions.isEmpty()) {
+//            int randomDayIndex = new Random().nextInt(dayOptions.size());
+//            WebElement randomDayButton = dayOptions.get(randomDayIndex);
+//            randomDayButton.click();
+//        }
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+//        WebElement day = driver.findElement(By.cssSelector("button:nth-child(5)"));
+//        new Actions(driver)
+//                .click(day)
+//                .perform();
+        JavascriptExecutor executor2 = (JavascriptExecutor) driver;
+        executor2.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("button:nth-child(5)")));
+//        general.clickElement(locators.datePicker);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+
     }
 
     public void countrySelection() {
