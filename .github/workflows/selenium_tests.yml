@@ -24,14 +24,12 @@ jobs:
 
       - name: Set up ChromeDriver
         run: |
-          # Define Chromedriver version
-          $CHROMEDRIVER_VERSION="124.0.6367.119"
-          # Download Chromedriver
-          Invoke-WebRequest "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_win32.zip" -OutFile chromedriver.zip
-          # Extract Chromedriver
-          Expand-Archive -Path chromedriver.zip -DestinationPath .
-          # Add Chromedriver to PATH
-          $env:PATH += ";$(Get-Location)"
+          wget -q -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+          LATEST_RELEASE=$(cat /tmp/chromedriver.zip)
+          wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$LATEST_RELEASE/chromedriver_linux64.zip
+          unzip -o /tmp/chromedriver.zip -d /tmp/
+          sudo mv /tmp/chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Run tests
         run: mvn clean test
