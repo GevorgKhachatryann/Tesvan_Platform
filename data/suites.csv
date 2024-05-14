@@ -1,4 +1,4 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Mon May 13 09:51:16 UTC 2024","Mon May 13 09:51:19 UTC 2024","3460","Selenium Tests","Regression","tests.RegistrationTest","tests.RegistrationTest","registerWithInvalidEmail","registerWithInvalidEmail",""
-"broken","Mon May 13 09:51:23 UTC 2024","Mon May 13 09:51:25 UTC 2024","2194","Selenium Tests","Regression","tests.RegistrationTest","tests.RegistrationTest","registration","registration",""
-"broken","Mon May 13 09:51:19 UTC 2024","Mon May 13 09:51:23 UTC 2024","3224","Selenium Tests","Regression","tests.RegistrationTest","tests.RegistrationTest","registerWithInvalidPhoneNumber","registerWithInvalidPhoneNumber",""
+"broken","Tue May 14 05:50:53 UTC 2024","Tue May 14 05:51:06 UTC 2024","13290","Selenium Tests","Regression","tests.RegistrationTest","tests.RegistrationTest","registerWithInvalidEmail","registerWithInvalidEmail",""
+"broken","Tue May 14 05:51:06 UTC 2024","Tue May 14 05:51:20 UTC 2024","13578","Selenium Tests","Regression","tests.RegistrationTest","tests.RegistrationTest","registerWithInvalidPhoneNumber","registerWithInvalidPhoneNumber",""
+"broken","Tue May 14 05:51:20 UTC 2024","Tue May 14 05:51:33 UTC 2024","12709","Selenium Tests","Regression","tests.RegistrationTest","tests.RegistrationTest","registration","registration",""
