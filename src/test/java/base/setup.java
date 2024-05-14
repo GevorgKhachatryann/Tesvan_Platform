@@ -19,8 +19,8 @@ public class setup {
     public static void beforeClass() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless"); // Enable headless mode
-        options.addArguments("--no-sandbox"); // Bypass OS security model
-        options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
+        // options.addArguments("--no-sandbox"); // Bypass OS security model
+        // options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
