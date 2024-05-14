@@ -6,8 +6,8 @@ public class RegistrationLocators {
     public By lastName = By.cssSelector("[placeholder=\"Smith\"]");
     public By email = By.cssSelector("[placeholder=\"johnsmith@example.com\"]");
     public By phone = By.className("PhoneInputInput");
-    public By datePicker = By.cssSelector(".MuiInputAdornment-root button svg");
-    public By arrowDropDown = By.cssSelector("[aria-label=\"calendar view is open, switch to year view\"]");
+    public By datePicker = By.id("datePicker");
+    public By arrowDropDown = By.xpath("/html/body/div[2]/div[2]/div/div/div/div[1]/div[1]/button");
     public By year = By.xpath("//button[contains(text(), '2000')]");
     public By month = By.xpath("//button[contains(text(), 'Jan')]");
     public By day = By.xpath("//button[text()=6]");

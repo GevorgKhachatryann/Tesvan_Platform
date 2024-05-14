@@ -51,27 +51,27 @@ public class RegistrationPage extends setup {
     public void handleDatePicker() {
         General general = new General(driver);
         RegistrationLocators locators = new RegistrationLocators();
-//        general.waitForElementToBeVisible(locators.datePicker,25);
+        general.waitForElementToBeVisible(locators.datePicker,10);
         general.clickElement(locators.datePicker);
 //        general.waitForElementToBeClickable(locators.arrowDropDown,25);
-
-        general.clickElement(locators.arrowDropDown);
-        // Choose a random year
-//        general.waitForElementToBeClickable(locators.year,10);
-        List<WebElement> yearOptions = driver.findElements(locators.year);
-        if (!yearOptions.isEmpty()) {
-            int randomYearIndex = new Random().nextInt(yearOptions.size());
-            WebElement randomYearButton = yearOptions.get(randomYearIndex);
-            randomYearButton.click();
-        }
-//        general.waitForElementToBeClickable(locators.month,10);
-        // Choose a random month
-        List<WebElement> monthOptions = driver.findElements(locators.month);
-        if (!monthOptions.isEmpty()) {
-            int randomMonthIndex = new Random().nextInt(monthOptions.size());
-            WebElement randomMonthButton = monthOptions.get(randomMonthIndex);
-            randomMonthButton.click();
-        }
+//
+//        general.clickElement(locators.arrowDropDown);
+//        // Choose a random year
+////        general.waitForElementToBeClickable(locators.year,10);
+//        List<WebElement> yearOptions = driver.findElements(locators.year);
+//        if (!yearOptions.isEmpty()) {
+//            int randomYearIndex = new Random().nextInt(yearOptions.size());
+//            WebElement randomYearButton = yearOptions.get(randomYearIndex);
+//            randomYearButton.click();
+//        }
+////        general.waitForElementToBeClickable(locators.month,10);
+//        // Choose a random month
+//        List<WebElement> monthOptions = driver.findElements(locators.month);
+//        if (!monthOptions.isEmpty()) {
+//            int randomMonthIndex = new Random().nextInt(monthOptions.size());
+//            WebElement randomMonthButton = monthOptions.get(randomMonthIndex);
+//            randomMonthButton.click();
+//        }
         general.waitForElementToBeClickable(locators.day,20);
 
         // Choose a random day
