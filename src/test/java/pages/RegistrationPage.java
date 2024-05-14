@@ -126,7 +126,7 @@ public class RegistrationPage extends setup {
         randomCountryOption.click();
     }
 
-    private void englishLevelSelection() {
+    public void englishLevelSelection() {
         RegistrationLocators locators = new RegistrationLocators();
         List<WebElement> countryOptions = driver.findElements(locators.level);
         int randomIndex = new Random().nextInt(countryOptions.size());

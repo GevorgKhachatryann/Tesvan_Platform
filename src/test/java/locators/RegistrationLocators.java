@@ -30,4 +30,9 @@ public class RegistrationLocators {
     public By hello = By.xpath("//p[contains(text(), 'Hello')]");
     public By invalidEmail = By.xpath("//p[contains(text(), 'Email is not valid')]");
     public By invalidPhone = By.xpath("//p[contains(text(), 'Phone number is not valid')]");
+    public By existingEmail = By.xpath("//p[contains(text(), 'This email address is already used')]");
+    public By invalidPassword = By.xpath("//p[contains(text(),'Password is not valid')]");
+    public By passwordDoesntMatch = By.xpath("//p[contains(text(),\"Password doesn't match\")]");
+    public By invalidBirthDate = By.xpath("//p[contains(text(),'Birth Date is not valid')]");
+    public By dateField = By.cssSelector("input[placeholder='MM/DD/YYYY']");
 }
