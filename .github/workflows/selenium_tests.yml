@@ -30,7 +30,7 @@ jobs:
         if: always()
         run: |
           npm install -g allure-commandline
-          allure generate allure-results -o allure-report --clean
+          allure generate allure-results
           
       ## Deploy step
       - name: Deploy Allure Report to GitHub Pages

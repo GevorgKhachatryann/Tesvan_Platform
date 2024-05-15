@@ -38,8 +38,9 @@ public class LoginTests extends setup {
         general.enterText(locators.email, data.getEmail());
         general.enterText(locators.password, password);
         general.clickElement(regLoc.loginBtn);
-        general.waitForElementToBeVisible(settingsLocators.settingsIcon, 15);
+        general.waitForElementToBeVisible(regLoc.hello, 15);
         general.assertTextEquals(regLoc.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
+        general.waitForElementToBeVisible(settingsLocators.settingsIcon, 15);
         general.clickElement(settingsLocators.settingsIcon);
         String actualText = driver.findElement(locators.email).getAttribute("value");
         Assert.assertEquals(actualText, data.getEmail());
@@ -137,8 +138,9 @@ public class LoginTests extends setup {
         general.enterText(locators.email, data.getEmail());
         general.enterText(locators.password, password);
         general.clickElement(regLoc.loginBtn);
-        general.waitForElementToBeVisible(settingsLocators.settingsIcon, 15);
+        general.waitForElementToBeVisible(regLoc.hello, 15);
         general.assertTextEquals(regLoc.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
+        general.waitForElementToBeVisible(settingsLocators.settingsIcon, 15);
         general.clickElement(settingsLocators.settingsIcon);
         String actualText = driver.findElement(locators.email).getAttribute("value");
         Assert.assertEquals(actualText, data.getEmail());
@@ -164,8 +166,9 @@ public class LoginTests extends setup {
         general.enterText(locators.email, data.getEmail());
         general.enterText(locators.password, password);
         general.clickElement(regLoc.loginBtn);
-        general.waitForElementToBeVisible(settingsLocators.settingsIcon, 15);
+        general.waitForElementToBeVisible(regLoc.hello, 15);
         general.assertTextEquals(regLoc.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
+        general.waitForElementToBeVisible(settingsLocators.settingsIcon, 15);
         general.clickElement(settingsLocators.settingsIcon);
         String actualText = driver.findElement(locators.email).getAttribute("value");
         Assert.assertEquals(actualText, data.getEmail());
