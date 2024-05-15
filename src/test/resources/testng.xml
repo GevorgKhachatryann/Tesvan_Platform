@@ -3,7 +3,8 @@
     <test name="Regression">
         <classes>
             <class name="tests.RegistrationTest"/>
-            <!-- Add more test classes here as needed -->
+            <class name="tests.ForgotPasswordTest"/>
+            <class name="tests.LoginTests"/>
         </classes>
     </test>
     <!-- Add more test configurations if needed -->
