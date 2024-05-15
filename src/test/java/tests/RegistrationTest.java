@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class RegistrationTest extends setup {
     @Test
-    public void registration() throws LoginException, IOException {
+    public void testRegistration() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
@@ -41,7 +41,7 @@ public class RegistrationTest extends setup {
     }
 
     @Test
-    public void registerWithInvalidEmail() {
+    public void testRegisterWithInvalidEmail() {
         userData data = new userData();
         General general = new General(driver);
         RegistrationPage regPage = new RegistrationPage(driver);
@@ -62,7 +62,7 @@ public class RegistrationTest extends setup {
     }
 
     @Test
-    public void registerWithInvalidPhoneNumber() throws LoginException {
+    public void testRegisterWithInvalidPhoneNumber() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
@@ -85,7 +85,7 @@ public class RegistrationTest extends setup {
     }
 
     @Test
-    public void registerWithExistingEmail() throws LoginException, IOException {
+    public void testRegisterWithExistingEmail() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
@@ -105,7 +105,7 @@ public class RegistrationTest extends setup {
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
         general.enterText(locators.email, data.getEmail());
-        general.enterText(locators.phone, "99"+ data.getPhoneNumber());
+        general.enterText(locators.phone, "99" + data.getPhoneNumber());
         regPage.handleDatePicker();
         general.clickElement(locators.gender);
         general.waitForElementToBeClickable(locators.countryArrowBtn, 10);
@@ -116,8 +116,9 @@ public class RegistrationTest extends setup {
         general.isDisabled(locators.nextStep);
         general.assertTextEquals(locators.existingEmail, Constants.THIS_EMAIL_IS_ALREADY_USED);
     }
+
     @Test
-    public void registerWithWeakPassword() throws LoginException {
+    public void testRegisterWithWeakPassword() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
@@ -128,7 +129,7 @@ public class RegistrationTest extends setup {
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
         general.enterText(locators.email, data.getEmail());
-        general.enterText(locators.phone, "99"+ data.getPhoneNumber());
+        general.enterText(locators.phone, "99" + data.getPhoneNumber());
         regPage.handleDatePicker();
         general.clickElement(locators.gender);
         general.waitForElementToBeClickable(locators.countryArrowBtn, 10);
@@ -136,20 +137,20 @@ public class RegistrationTest extends setup {
         regPage.countrySelection();
         general.enterText(locators.city, data.getCity());
         general.clickElement(locators.nextStep);
-        general.waitForElementToBeClickable(locators.englishArrowBtn,20);
+        general.waitForElementToBeClickable(locators.englishArrowBtn, 20);
         general.clickElement(locators.englishArrowBtn);
         regPage.englishLevelSelection();
         general.enterText(locators.study, data.getUniversity());
         general.clickElement(locators.backgroundQA);
         general.clickElement(locators.next);
         general.enterText(locators.password, Constants.INVALID_PASSWORD);
-        general.enterText(locators.confirmPassword,Constants.INVALID_PASSWORD);
+        general.enterText(locators.confirmPassword, Constants.INVALID_PASSWORD);
         general.clickElement(locators.terms);
         general.assertTextEquals(locators.invalidPassword, Constants.INVALID_PASSWORD_MESSAGE);
     }
 
     @Test
-    public void registerWithMismatchedPasswords() throws LoginException {
+    public void testRegisterWithMismatchedPasswords() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
@@ -160,7 +161,7 @@ public class RegistrationTest extends setup {
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
         general.enterText(locators.email, data.getEmail());
-        general.enterText(locators.phone, "99"+ data.getPhoneNumber());
+        general.enterText(locators.phone, "99" + data.getPhoneNumber());
         regPage.handleDatePicker();
         general.clickElement(locators.gender);
         general.waitForElementToBeClickable(locators.countryArrowBtn, 10);
@@ -168,7 +169,7 @@ public class RegistrationTest extends setup {
         regPage.countrySelection();
         general.enterText(locators.city, data.getCity());
         general.clickElement(locators.nextStep);
-        general.waitForElementToBeClickable(locators.englishArrowBtn,20);
+        general.waitForElementToBeClickable(locators.englishArrowBtn, 20);
         general.clickElement(locators.englishArrowBtn);
         regPage.englishLevelSelection();
         general.enterText(locators.study, data.getUniversity());
@@ -181,7 +182,7 @@ public class RegistrationTest extends setup {
     }
 
     @Test
-    public void registerWithInvalidBirthDate() throws LoginException {
+    public void testRegisterWithInvalidBirthDate() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
         Actions actions = new Actions(driver);
@@ -193,7 +194,7 @@ public class RegistrationTest extends setup {
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
         general.enterText(locators.email, data.getEmail());
-        general.enterText(locators.phone, "99"+ data.getPhoneNumber());
+        general.enterText(locators.phone, "99" + data.getPhoneNumber());
         actions.sendKeys(driver.findElement(locators.dateField), Constants.INVALID_DATE).perform();
         general.clickElement(locators.gender);
         general.waitForElementToBeClickable(locators.countryArrowBtn, 10);

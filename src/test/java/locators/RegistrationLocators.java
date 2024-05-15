@@ -1,6 +1,7 @@
 package locators;
 
 import org.openqa.selenium.By;
+
 public class RegistrationLocators {
     public By firstName = By.cssSelector("[placeholder=\"John\"]");
     public By lastName = By.cssSelector("[placeholder=\"Smith\"]");

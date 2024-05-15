@@ -46,6 +46,13 @@ public class General extends setup {
         wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
     }
 
+    public boolean urlDoesNotContainPath(String url, String path) {
+        return !url.contains(path);
+    }
+
+    public boolean urlContainsPath(String url, String path) {
+        return url.contains(path);
+    }
     public void waitForElementToBeInvisible(By selector, int timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(selector));
