@@ -30,7 +30,7 @@ jobs:
         if: always()
         run: |
           npm install -g allure-commandline
-          allure generate allure-results -o allure-report-$(date +%Y%m%d-%H%M%S) --clean
+          allure generate allure-results
 
       ## Deploy step
       - name: Deploy Allure Report to GitHub Pages
@@ -38,6 +38,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report-$(date +%Y%m%d-%H%M%S)
+          publish_dir: ./allure-report
           publish_branch: allure-report
           keep_files: false
