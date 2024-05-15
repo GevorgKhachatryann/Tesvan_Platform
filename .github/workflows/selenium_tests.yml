@@ -23,7 +23,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Run tests
-        run: mvn clean test
+        run: mvn test
 
       ## Allure report
       - name: Generate Allure Report
