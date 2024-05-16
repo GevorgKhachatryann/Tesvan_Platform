@@ -10,12 +10,13 @@ import methods.General;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 import pages.RegistrationPage;
+import pages.Retry;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
 
 public class RegistrationTest extends setup {
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void testRegistration() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
@@ -40,7 +41,7 @@ public class RegistrationTest extends setup {
         general.assertTextEquals(locators.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void testRegisterWithInvalidEmail() {
         userData data = new userData();
         General general = new General(driver);
@@ -61,7 +62,7 @@ public class RegistrationTest extends setup {
         general.assertTextEquals(locators.invalidEmail, Constants.EMAIL_IS_NOT_VALID);
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void testRegisterWithInvalidPhoneNumber() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -84,7 +85,7 @@ public class RegistrationTest extends setup {
         general.assertTextEquals(locators.invalidPhone, Constants.PHONE_NUMBER_IS_NOT_VALID);
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void testRegisterWithExistingEmail() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
@@ -117,7 +118,7 @@ public class RegistrationTest extends setup {
         general.assertTextEquals(locators.existingEmail, Constants.THIS_EMAIL_IS_ALREADY_USED);
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void testRegisterWithWeakPassword() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -149,7 +150,7 @@ public class RegistrationTest extends setup {
         general.assertTextEquals(locators.invalidPassword, Constants.INVALID_PASSWORD_MESSAGE);
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void testRegisterWithMismatchedPasswords() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -181,7 +182,7 @@ public class RegistrationTest extends setup {
         general.assertTextEquals(locators.passwordDoesntMatch, Constants.PASSWORD_DOESNT_MATCH);
     }
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void testRegisterWithInvalidBirthDate() throws LoginException {
         userData data = new userData();
         General general = new General(driver);

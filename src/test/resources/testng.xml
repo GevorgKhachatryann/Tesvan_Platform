@@ -7,5 +7,7 @@
             <class name="tests.LoginTests"/>
         </classes>
     </test>
-    <!-- Add more test configurations if needed -->
+    <listener class-name="pages.Retry">
+        <parameter name="retryCount" value="5"/>
+    </listener>
 </suite>
