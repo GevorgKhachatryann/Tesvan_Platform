@@ -12,7 +12,6 @@ import methods.General;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.Retry;
 
 import javax.security.auth.login.LoginException;
 
@@ -23,7 +22,7 @@ import static pages.RegistrationPage.generateStrongPassword;
 
 public class LoginTests extends setup {
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testLoginWithValidCredentials() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -47,7 +46,7 @@ public class LoginTests extends setup {
         Assert.assertEquals(actualText, data.getEmail());
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testInvalidEmailValidPassword() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -66,7 +65,7 @@ public class LoginTests extends setup {
         general.assertTextEquals(locators.errorMessage, Constants.INVALID_EMAIL_OR_PASSWORD);
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testValidEmailInvalidPassword() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -85,7 +84,7 @@ public class LoginTests extends setup {
         general.assertTextEquals(locators.errorMessage, Constants.INVALID_EMAIL_OR_PASSWORD);
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testWithEmptyEmail() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -104,7 +103,7 @@ public class LoginTests extends setup {
         general.assertTextEquals(locators.errorMessage, Constants.INVALID_EMAIL_OR_PASSWORD);
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testWithEmptyPassword() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -123,7 +122,7 @@ public class LoginTests extends setup {
         general.assertTextEquals(locators.errorMessage, Constants.INVALID_EMAIL_OR_PASSWORD);
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testLogoutFunctionality() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -151,7 +150,7 @@ public class LoginTests extends setup {
         general.urlContainsPath(driver.getCurrentUrl(), url.LOGIN_URL);
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testCloseBtnFunctionalityInLogoutProcess() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -179,7 +178,7 @@ public class LoginTests extends setup {
         general.urlDoesNotContainPath(driver.getCurrentUrl(), url.LOGIN_URL);
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testRememberMeFunctionality() throws LoginException {
         userData data = new userData();
         General general = new General(driver);

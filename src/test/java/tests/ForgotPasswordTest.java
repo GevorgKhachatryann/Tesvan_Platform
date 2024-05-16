@@ -9,7 +9,6 @@ import locators.RegistrationLocators;
 import methods.ApiRequests;
 import methods.General;
 import org.testng.annotations.Test;
-import pages.Retry;
 
 import javax.security.auth.login.LoginException;
 
@@ -19,7 +18,7 @@ import static pages.RegistrationPage.generateStrongPassword;
 
 public class ForgotPasswordTest extends setup {
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testForgotPassword() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
@@ -53,7 +52,7 @@ public class ForgotPasswordTest extends setup {
         general.assertTextEquals(regLoc.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testForgotPasswordWithInvalidEmailFormat() {
         General general = new General(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
@@ -65,7 +64,7 @@ public class ForgotPasswordTest extends setup {
         general.assertTextEquals(regLoc.invalidEmail, Constants.EMAIL_IS_NOT_VALID);
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testNoVerifiedUserErrorMessage() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
@@ -80,7 +79,7 @@ public class ForgotPasswordTest extends setup {
         general.assertTextEquals(locators.noVerifiedUser, Constants.THERE_IS_NO_VERIFIED_USER);
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testForgotPasswordWithWeakPassword() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
@@ -105,7 +104,7 @@ public class ForgotPasswordTest extends setup {
         general.assertTextEquals(regLoc.invalidPassword, Constants.INVALID_PASSWORD_MESSAGE);
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test
     public void testForgotPasswordWithMismatchedPasswords() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
