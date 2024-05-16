@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Selenium Tests">
     <listeners>
-        <listener class-name="pages.Retry"/>
+        <listener class-name="pages.RetryListener"/>
     </listeners>
     <test name="Regression">
         <classes>
