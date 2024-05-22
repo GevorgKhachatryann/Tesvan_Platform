@@ -44,6 +44,7 @@ public class LoginTests extends setup {
         general.clickElement(settingsLocators.settingsIcon);
         String actualText = driver.findElement(locators.email).getAttribute("value");
         Assert.assertEquals(actualText, data.getEmail());
+        requests.deleteAccount(data.getPassword());
     }
 
     @Test
@@ -63,6 +64,7 @@ public class LoginTests extends setup {
         general.clickElement(regLoc.loginBtn);
         general.waitForElementToBeVisible(locators.errorMessage, 10);
         general.assertTextEquals(locators.errorMessage, Constants.INVALID_EMAIL_OR_PASSWORD);
+        requests.deleteAccount(password);
     }
 
     @Test
@@ -82,6 +84,7 @@ public class LoginTests extends setup {
         general.clickElement(regLoc.loginBtn);
         general.waitForElementToBeVisible(locators.errorMessage, 10);
         general.assertTextEquals(locators.errorMessage, Constants.INVALID_EMAIL_OR_PASSWORD);
+        requests.deleteAccount(password);
     }
 
     @Test
@@ -101,6 +104,7 @@ public class LoginTests extends setup {
         general.clickElement(regLoc.loginBtn);
         general.waitForElementToBeVisible(locators.errorMessage, 15);
         general.assertTextEquals(locators.errorMessage, Constants.INVALID_EMAIL_OR_PASSWORD);
+        requests.deleteAccount(password);
     }
 
     @Test
@@ -120,6 +124,7 @@ public class LoginTests extends setup {
         general.clickElement(regLoc.loginBtn);
         general.waitForElementToBeVisible(locators.errorMessage, 15);
         general.assertTextEquals(locators.errorMessage, Constants.INVALID_EMAIL_OR_PASSWORD);
+        requests.deleteAccount(password);
     }
 
     @Test
@@ -148,6 +153,7 @@ public class LoginTests extends setup {
         general.waitForElementToBeVisible(locators.leaveBtn, 10);
         general.clickElement(locators.leaveBtn);
         general.urlContainsPath(driver.getCurrentUrl(), url.LOGIN_URL);
+        requests.deleteAccount(password);
     }
 
     @Test
@@ -176,6 +182,7 @@ public class LoginTests extends setup {
         general.waitForElementToBeVisible(locators.closeBtn, 10);
         general.clickElement(locators.closeBtn);
         general.urlDoesNotContainPath(driver.getCurrentUrl(), url.LOGIN_URL);
+        requests.deleteAccount(password);
     }
 
     @Test
@@ -201,5 +208,6 @@ public class LoginTests extends setup {
         driver.get(url.LOGIN_URL);
         general.waitForElementToBeVisible(regLoc.hello, 10);
         general.assertTextEquals(regLoc.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
+        requests.deleteAccount(password);
     }
 }

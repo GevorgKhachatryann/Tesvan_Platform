@@ -50,6 +50,7 @@ public class ForgotPasswordTest extends setup {
         general.clickElement(regLoc.loginBtn);
         general.waitForElementToBeClickable(regLoc.hello, 10);
         general.assertTextEquals(regLoc.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
+        requests.deleteAccount(newPassword);
     }
 
     @Test
@@ -102,6 +103,7 @@ public class ForgotPasswordTest extends setup {
         general.enterText(regLoc.password, Constants.INVALID_PASSWORD);
         general.enterText(regLoc.confirmPassword, Constants.INVALID_PASSWORD);
         general.assertTextEquals(regLoc.invalidPassword, Constants.INVALID_PASSWORD_MESSAGE);
+        requests.deleteAccount(password);
     }
 
     @Test
@@ -128,5 +130,6 @@ public class ForgotPasswordTest extends setup {
         general.enterText(regLoc.confirmPassword, Constants.INVALID_PASSWORD);
         general.waitForElementToBeVisible(regLoc.passwordDoesntMatch, 15);
         general.assertTextEquals(regLoc.passwordDoesntMatch, Constants.PASSWORD_DOESNT_MATCH);
+        requests.deleteAccount(password);
     }
 }

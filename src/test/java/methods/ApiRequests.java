@@ -3,6 +3,7 @@ package methods;
 import base.url;
 import data.userData;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -12,6 +13,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,6 +21,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -281,7 +284,6 @@ public class ApiRequests {
             JSONObject jsonResponse = new JSONObject(responseBody);
             JSONArray emailMessages = jsonResponse.getJSONArray("hydra:member");
             System.out.println(emailMessages.length());
-//            System.out.println(emailMessages);
 
             if (emailMessages.length() == 1) {
                 JSONObject message = emailMessages.getJSONObject(0);
@@ -299,7 +301,6 @@ public class ApiRequests {
                 System.out.println(messageResponseCode);
 
                 if (messageResponseCode == 200) {
-                    System.out.println("mtav");
                     String messageResponseBody = EntityUtils.toString(messageResponse.getEntity());
                     System.out.println(messageResponseBody);
 
@@ -342,4 +343,28 @@ public class ApiRequests {
         }
     }
 
+    public void deleteAccount(String password) {
+
+        try {
+            String apiUrl = "https://platform.tesvan.com/server/api/v2/register/deleteAccount?password=" + password;
+
+            // Retrieve token from localStorage or sessionStorage
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            String token = (String) js.executeScript(
+                    "return localStorage.getItem('authToken') || sessionStorage.getItem('authToken');");
+
+            java.net.URL url = new java.net.URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("DELETE");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                System.out.println("Account deleted successfully");
+            } else {
+                System.out.println("Failed to delete the account. Response code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

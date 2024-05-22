@@ -13,10 +13,11 @@ import pages.RegistrationPage;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
+import java.net.http.HttpResponse;
 
 public class RegistrationTest extends setup {
     @Test
-    public void testRegistration() throws LoginException, IOException {
+    public void testRegistration() throws LoginException, IOException, InterruptedException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
@@ -38,6 +39,9 @@ public class RegistrationTest extends setup {
         general.clickElement(locators.loginBtn);
         general.waitForElementToBeClickable(locators.hello, 10);
         general.assertTextEquals(locators.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
+        System.out.println("password" + data.getPassword());
+        requests.deleteAccount(data.getPassword());
+
     }
 
     @Test
@@ -85,7 +89,7 @@ public class RegistrationTest extends setup {
     }
 
     @Test
-    public void testRegisterWithExistingEmail() throws LoginException, IOException {
+    public void testRegisterWithExistingEmail() throws LoginException, IOException, InterruptedException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
