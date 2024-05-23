@@ -3,7 +3,7 @@ package locators;
 import org.openqa.selenium.By;
 
 public class SettingsLocators {
-    public By settingsIcon = By.xpath("//a[contains(text(),'Settings')]");
+    public By settingsIcon = By.xpath("//a[@href='/student/empty/settings']");
     public By deleteAccount = By.xpath("//a[contains(text(),'Delete account')]");
     public By currentPassword = By.cssSelector("[placeholder=\"Please enter your password\"]");
     public By deleteBtn = By.xpath("//button[contains(text(),'Delete account')]");
