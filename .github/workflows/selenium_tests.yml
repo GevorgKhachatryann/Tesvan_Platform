@@ -25,19 +25,41 @@ jobs:
       - name: Run tests
         run: mvn test
 
-      ## Allure report
-      - name: Generate Allure Report
-        if: always()
-        run: |
-          npm install -g allure-commandline
-          allure generate allure-results
+#      ## Allure report
+#      - name: Generate Allure Report
+#        if: always()
+#        run: |
+#          npm install -g allure-commandline
+#          allure generate allure-results
+#
+#      ## Deploy step
+#      - name: Deploy Allure Report to GitHub Pages
+#        if: always()
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./allure-report
+#          publish_branch: allure-report
+#          keep_files: false
 
-      ## Deploy step
-      - name: Deploy Allure Report to GitHub Pages
+      - uses: actions/upload-artifact@v3
         if: always()
-        uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report
-          publish_branch: allure-report
-          keep_files: false
+          name: allure-results-${{ matrix.marks }}
+          path: allure-results-${{ matrix.marks }}
+      - name: configure allure using allure report action
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
