@@ -13,11 +13,10 @@ import pages.RegistrationPage;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
-import java.net.http.HttpResponse;
 
 public class RegistrationTest extends setup {
     @Test
-    public void testRegistration() throws LoginException, IOException, InterruptedException {
+    public void testRegistration() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
@@ -89,7 +88,7 @@ public class RegistrationTest extends setup {
     }
 
     @Test
-    public void testRegisterWithExistingEmail() throws LoginException, IOException, InterruptedException {
+    public void testRegisterWithExistingEmail() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
