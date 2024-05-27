@@ -128,6 +128,7 @@ public class ForgotPasswordTest extends setup {
         driver.get(verificationLink);
         general.enterText(regLoc.password, password);
         general.enterText(regLoc.confirmPassword, Constants.INVALID_PASSWORD);
+        general.clickElement(locators.resetPassword);
         general.waitForElementToBeVisible(regLoc.passwordDoesntMatch, 15);
         general.assertTextEquals(regLoc.passwordDoesntMatch, Constants.PASSWORD_DOESNT_MATCH);
         requests.deleteAccount(password);
