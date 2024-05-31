@@ -10,7 +10,6 @@ import locators.SettingsLocators;
 import methods.ApiRequests;
 import methods.General;
 import org.testng.annotations.Test;
-import org.yaml.snakeyaml.scanner.Constant;
 
 import javax.security.auth.login.LoginException;
 

@@ -16,7 +16,7 @@ public class RegistrationLocators {
     public By countryArrowBtn = By.cssSelector("[name=\"country\"]");
     public By city = By.cssSelector("[placeholder=\"Where do you live?\"]");
     public By nextStep = By.xpath("//*[@id=\"root\"]/div/main/div/div[2]/div/div[3]/form/div[2]/button");
-    public By englishArrowBtn = By.cssSelector("[placeholder=\"Select your English level\"]");
+    public By englishArrowBtn = By.cssSelector("[placeholder=\"Choose your english level\"]");
     public By level = By.xpath("//*[@id=\"root\"]/div/main/div/div[2]/div/div[3]/form/div/div[1]/div[1]/label/div[2]/div/p");
     public By study = By.cssSelector("[placeholder=\"Where do you study?\"]");
     public By backgroundQA = By.xpath("//form/div/div[1]/div[3]/label/div/div[1]/label/span");
@@ -31,9 +31,9 @@ public class RegistrationLocators {
     public By hello = By.xpath("//p[contains(text(), 'Hello')]");
     public By invalidEmail = By.xpath("//p[contains(text(), 'Email is not valid')]");
     public By invalidPhone = By.xpath("//p[contains(text(), 'Phone number is not valid')]");
-    public By existingEmail = By.xpath("//p[contains(text(), 'This email address is already used')]");
+    public By existingEmail = By.xpath("//p[contains(text(), 'User with this email already exists')]");
     public By invalidPassword = By.xpath("//p[contains(text(),'Password is not valid')]");
     public By passwordDoesntMatch = By.xpath("//p[contains(text(),\"Password doesn't match\")]");
-    public By invalidBirthDate = By.xpath("//p[contains(text(),'Birth Date is not valid')]");
+    public By invalidBirthDate = By.xpath("//p[contains(text(),'Birth date is not valid')]");
     public By dateField = By.cssSelector("input[placeholder='MM/DD/YYYY']");
 }

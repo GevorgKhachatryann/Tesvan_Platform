@@ -9,12 +9,12 @@ public class Constants {
     public static final String EMAIL_IS_NOT_VALID = "Email is not valid";
     public static final String INVALID_EMAIL = "xyz";
     public static final String PHONE_NUMBER_IS_NOT_VALID = "Phone number is not valid";
-    public static final String THIS_EMAIL_IS_ALREADY_USED = "This email address is already used";
+    public static final String THIS_EMAIL_IS_ALREADY_USED = "User with this email already exists";
     public static final String INVALID_PASSWORD_MESSAGE = "Password is not valid";
     public static final String INVALID_PASSWORD = "Tesvan";
     public static final String VALID_PASSWORD = "Tesvan12345*";
     public static final String PASSWORD_DOESNT_MATCH = "Password doesn't match";
-    public static final String BIRTH_DATE_IS_NOT_VALID= "Birth Date is not valid";
+    public static final String BIRTH_DATE_IS_NOT_VALID= "Birth date is not valid";
     public static final String INVALID_DATE = "05/02/0002";
     public static final String YOUR_PASSWORD_HAS_BEEN_SUCCESSFULLY_CHANGED = "Your password has been successfully changed.";
     public static final String THERE_IS_NO_VERIFIED_USER = "There is not verified user";
