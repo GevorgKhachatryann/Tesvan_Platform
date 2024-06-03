@@ -30,7 +30,7 @@ public class RegistrationPage extends setup {
         RegistrationLocators locators = new RegistrationLocators();
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
-        general.enterText(locators.email, data.getEmail());
+        general.enterText(locators.email, email);
         general.enterText(locators.phone, "99"+ data.getPhoneNumber());
         handleDatePicker();
         general.clickElement(locators.gender);
@@ -57,14 +57,11 @@ public class RegistrationPage extends setup {
         General general = new General(driver);
         RegistrationLocators locators = new RegistrationLocators();
 //        general.waitForElementToBeVisible(locators.datePicker,25);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-
-//        WebElement clickable = driver.findElement(By.id("datePicker"));
-//        new Actions(driver)
-//                .click(clickable)
-//                .perform();
+        WebElement datePicker = driver.findElement(By.id("datePicker"));
         JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", driver.findElement(By.id("datePicker")));
+        executor.executeScript("arguments[0].scrollIntoView(true);", datePicker);
+        executor.executeScript("arguments[0].click();", datePicker);
+
 //        general.clickElement(locators.datePicker);
 //        general.waitForElementToBeClickable(locators.arrowDropDown,25);
 //        WebElement arrow = driver.findElement(locators.arrowDropDown);
@@ -105,7 +102,7 @@ public class RegistrationPage extends setup {
 //                .click(day)
 //                .perform();
         JavascriptExecutor executor2 = (JavascriptExecutor) driver;
-        executor2.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("button:nth-child(5)")));
+        executor2.executeScript("arguments[0].click();", driver.findElement(By.cssSelector(" div > div:nth-child(1) > button:nth-child(2)[aria-selected=\"false\"]")));
 //        general.clickElement(locators.datePicker);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 

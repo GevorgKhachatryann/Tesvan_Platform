@@ -225,7 +225,7 @@ public class ApiRequests {
             userDataJson.put("role", "STUDENT");
             userDataJson.put("firstName", data.getFirstName());
             userDataJson.put("lastName", data.getLastName());
-            userDataJson.put("phoneNumber", data.getPhoneNumber());
+            userDataJson.put("phoneNumber", "+37499" + data.getPhoneNumber());
             userDataJson.put("birthday", "2002-05-15T05:22:16.726Z");
             userDataJson.put("gender", "Male");
             userDataJson.put("city", data.getCity());

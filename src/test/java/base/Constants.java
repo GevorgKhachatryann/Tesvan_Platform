@@ -19,9 +19,9 @@ public class Constants {
     public static final String YOUR_PASSWORD_HAS_BEEN_SUCCESSFULLY_CHANGED = "Your password has been successfully changed.";
     public static final String THERE_IS_NO_VERIFIED_USER = "There is not verified user";
     public static final String INVALID_EMAIL_OR_PASSWORD = "Invalid email or password";
-    public static final String SOMETHING_WENT_WRONG = "Something went wrong, please try again!";
+    public static final String SOMETHING_WENT_WRONG = "Something went wrong. Please try again!";
     public static final String SUCCESSFULLY_CHANGED = "Your password is successfully changed.";
-    public static final String SUCCESSFULLY_SENT = "Your message has successfully been sent.";
+    public static final String SUCCESSFULLY_SENT = "  Your message has successfully been sent.";
     public static final String FIRST_NAME_IS_NOT_VALID = "First name is not valid";
     public static final String LAST_NAME_IS_NOT_VALID = "Last name is not valid";
 

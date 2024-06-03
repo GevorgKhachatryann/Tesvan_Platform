@@ -9,6 +9,7 @@ import locators.RegistrationLocators;
 import locators.SettingsLocators;
 import methods.ApiRequests;
 import methods.General;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
 import javax.security.auth.login.LoginException;
@@ -19,6 +20,7 @@ public class SettingsTests extends setup {
     @Test
     public void testDeleteAccountFromSettings() throws LoginException {
         userData data = new userData();
+        Actions actions = new Actions(driver);
         General general = new General(driver);
         LoginLocators loginLoc = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
@@ -26,6 +28,8 @@ public class SettingsTests extends setup {
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
+        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
+        general.clickElement(regLoc.eng);
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -51,6 +55,7 @@ public class SettingsTests extends setup {
     @Test
     public void testDeleteAccountFromSettingsWithWrongPass() throws LoginException {
         userData data = new userData();
+        Actions actions = new Actions(driver);
         General general = new General(driver);
         LoginLocators loginLoc = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
@@ -58,6 +63,8 @@ public class SettingsTests extends setup {
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
+        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
+        general.clickElement(regLoc.eng);
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -81,12 +88,15 @@ public class SettingsTests extends setup {
     public void testChangePasswordFromSettings() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
+        Actions actions = new Actions(driver);
         LoginLocators loginLoc = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
         SettingsLocators locators = new SettingsLocators();
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
+        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
+        general.clickElement(regLoc.eng);
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -120,12 +130,15 @@ public class SettingsTests extends setup {
     public void testChangePasswordFromSettingsWithWeakPassword() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
+        Actions actions = new Actions(driver);
         LoginLocators loginLoc = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
         SettingsLocators locators = new SettingsLocators();
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
+        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
+        general.clickElement(regLoc.eng);
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -148,6 +161,7 @@ public class SettingsTests extends setup {
     @Test
     public void testChangePasswordWithMismatchedPasswords() throws LoginException {
         userData data = new userData();
+        Actions actions = new Actions(driver);
         General general = new General(driver);
         LoginLocators loginLoc = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
@@ -155,6 +169,8 @@ public class SettingsTests extends setup {
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
+        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
+        general.clickElement(regLoc.eng);
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);

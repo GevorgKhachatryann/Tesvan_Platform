@@ -18,12 +18,16 @@ public class RegistrationTest extends setup {
     @Test
     public void testRegistration() throws LoginException, IOException {
         userData data = new userData();
+        Actions action = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         RegistrationPage regPage = new RegistrationPage(driver);
         RegistrationLocators locators = new RegistrationLocators();
         requests.generateRandomEmailForTest();
         driver.get(url.REGISTRATION_URL);
+        action.moveToElement(driver.findElement(locators.armLang)).perform();
+        general.clickElement(locators.eng);
+        general.clickElement(locators.eng);
         regPage.register(data.getEmail());
         requests.retrieveVerificationEmail();
         String verificationLink = requests.extractVerificationLink(data.getRegistrationMail());
@@ -46,10 +50,13 @@ public class RegistrationTest extends setup {
     @Test
     public void testRegisterWithInvalidEmail() {
         userData data = new userData();
+        Actions action = new Actions(driver);
         General general = new General(driver);
         RegistrationPage regPage = new RegistrationPage(driver);
         RegistrationLocators locators = new RegistrationLocators();
         driver.get(url.REGISTRATION_URL);
+        action.moveToElement(driver.findElement(locators.armLang)).perform();
+        general.clickElement(locators.eng);
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
         general.enterText(locators.email, Constants.INVALID_EMAIL);
@@ -67,11 +74,14 @@ public class RegistrationTest extends setup {
     @Test
     public void testRegisterWithInvalidPhoneNumber() throws LoginException {
         userData data = new userData();
+        Actions action = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         RegistrationPage regPage = new RegistrationPage(driver);
         RegistrationLocators locators = new RegistrationLocators();
         driver.get(url.REGISTRATION_URL);
+        action.moveToElement(driver.findElement(locators.armLang)).perform();
+        general.clickElement(locators.eng);
         requests.generateRandomEmailForTest();
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
@@ -90,12 +100,15 @@ public class RegistrationTest extends setup {
     @Test
     public void testRegisterWithExistingEmail() throws LoginException, IOException {
         userData data = new userData();
+        Actions action = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         RegistrationPage regPage = new RegistrationPage(driver);
         RegistrationLocators locators = new RegistrationLocators();
         requests.generateRandomEmailForTest();
         driver.get(url.REGISTRATION_URL);
+        action.moveToElement(driver.findElement(locators.armLang)).perform();
+        general.clickElement(locators.eng);
         regPage.register(data.getEmail());
         requests.retrieveVerificationEmail();
         String verificationLink = requests.extractVerificationLink(data.getRegistrationMail());
@@ -123,12 +136,15 @@ public class RegistrationTest extends setup {
     @Test
     public void testRegisterWithWeakPassword() throws LoginException {
         userData data = new userData();
+        Actions action = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         RegistrationPage regPage = new RegistrationPage(driver);
         RegistrationLocators locators = new RegistrationLocators();
         requests.generateRandomEmailForTest();
         driver.get(url.REGISTRATION_URL);
+        action.moveToElement(driver.findElement(locators.armLang)).perform();
+        general.clickElement(locators.eng);
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
         general.enterText(locators.email, data.getEmail());
@@ -155,12 +171,15 @@ public class RegistrationTest extends setup {
     @Test
     public void testRegisterWithMismatchedPasswords() throws LoginException {
         userData data = new userData();
+        Actions action = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         RegistrationPage regPage = new RegistrationPage(driver);
         RegistrationLocators locators = new RegistrationLocators();
         requests.generateRandomEmailForTest();
         driver.get(url.REGISTRATION_URL);
+        action.moveToElement(driver.findElement(locators.armLang)).perform();
+        general.clickElement(locators.eng);
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
         general.enterText(locators.email, data.getEmail());
@@ -194,6 +213,8 @@ public class RegistrationTest extends setup {
         RegistrationLocators locators = new RegistrationLocators();
         requests.generateRandomEmailForTest();
         driver.get(url.REGISTRATION_URL);
+        actions.moveToElement(driver.findElement(locators.armLang)).perform();
+        general.clickElement(locators.eng);
         general.enterText(locators.firstName, data.getFirstName());
         general.enterText(locators.lastName, data.getLastName());
         general.enterText(locators.email, data.getEmail());
@@ -206,5 +227,25 @@ public class RegistrationTest extends setup {
         general.enterText(locators.city, data.getCity());
         general.isDisabled(locators.nextStep);
         general.assertTextEquals(locators.invalidBirthDate, Constants.BIRTH_DATE_IS_NOT_VALID);
+    }
+
+    @Test
+    public void testRegisterWithUpdatedEmail() throws LoginException {
+        userData data = new userData();
+        General general = new General(driver);
+        Actions action = new Actions(driver);
+        ApiRequests requests = new ApiRequests(driver);
+        RegistrationPage regPage = new RegistrationPage(driver);
+        RegistrationLocators locators = new RegistrationLocators();
+        requests.generateRandomEmailForTest();
+        driver.get(url.REGISTRATION_URL);
+        action.moveToElement(driver.findElement(locators.armLang)).perform();
+        general.clickElement(locators.eng);
+        regPage.register(data.getEmail());
+        general.clickElement(locators.changeEmail);
+        requests.generateRandomEmailForTest();
+        general.enterText(locators.email, data.getEmail());
+        general.clickElement(locators.changeEmailBtn);
+
     }
 }
