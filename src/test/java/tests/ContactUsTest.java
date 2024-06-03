@@ -8,6 +8,7 @@ import locators.ContactUsLocators;
 import locators.RegistrationLocators;
 import methods.ApiRequests;
 import methods.General;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 import pages.RegistrationPage;
@@ -18,15 +19,15 @@ public class ContactUsTest extends setup {
     @Test
     public void testContactUsFormFunctionality() throws LoginException {
         userData data = new userData();
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         ContactUsLocators locators = new ContactUsLocators();
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.Contact_US_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         general.enterText(regLoc.firstName, data.getFirstName());
         general.enterText(regLoc.lastName, data.getLastName());
         requests.generateRandomEmailForTest();
@@ -42,14 +43,14 @@ public class ContactUsTest extends setup {
     @Test
     public void testContactUsWithInvalidEmail() {
         userData data = new userData();
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         ContactUsLocators locators = new ContactUsLocators();
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.Contact_US_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         general.enterText(regLoc.firstName, data.getFirstName());
         general.enterText(regLoc.lastName, data.getLastName());
         general.enterText(regLoc.email, Constants.INVALID_EMAIL);
@@ -64,15 +65,15 @@ public class ContactUsTest extends setup {
     @Test
     public void testContactUsWithEmptyFirstName() throws LoginException {
         userData data = new userData();
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         ContactUsLocators locators = new ContactUsLocators();
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.Contact_US_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         general.enterText(regLoc.firstName, "");
         general.enterText(regLoc.lastName, data.getLastName());
@@ -88,15 +89,15 @@ public class ContactUsTest extends setup {
     @Test
     public void testContactUsWithEmptyLastName() throws LoginException {
         userData data = new userData();
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         ContactUsLocators locators = new ContactUsLocators();
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.Contact_US_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         general.enterText(regLoc.firstName, data.getFirstName());
         general.enterText(regLoc.lastName, "");

@@ -27,15 +27,15 @@ public class LoginTests extends setup {
     public void testLoginWithValidCredentials() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
-        Actions actions = new Actions(driver);
         LoginLocators locators = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
         SettingsLocators settingsLocators = new SettingsLocators();
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -56,14 +56,14 @@ public class LoginTests extends setup {
     public void testInvalidEmailValidPassword() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
-        Actions actions = new Actions(driver);
         LoginLocators locators = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -80,14 +80,14 @@ public class LoginTests extends setup {
     public void testValidEmailInvalidPassword() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
-        Actions actions = new Actions(driver);
         LoginLocators locators = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -104,14 +104,14 @@ public class LoginTests extends setup {
     public void testWithEmptyEmail() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
-        Actions actions = new Actions(driver);
         LoginLocators locators = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -128,14 +128,14 @@ public class LoginTests extends setup {
     public void testWithEmptyPassword() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
-        Actions actions = new Actions(driver);
         LoginLocators locators = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -151,7 +151,6 @@ public class LoginTests extends setup {
     @Test
     public void testLogoutFunctionality() throws LoginException {
         userData data = new userData();
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         LoginLocators locators = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
@@ -159,8 +158,9 @@ public class LoginTests extends setup {
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -185,15 +185,15 @@ public class LoginTests extends setup {
     public void testCloseBtnFunctionalityInLogoutProcess() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
-        Actions actions = new Actions(driver);
         LoginLocators locators = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
         SettingsLocators settingsLocators = new SettingsLocators();
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);
@@ -218,14 +218,14 @@ public class LoginTests extends setup {
     public void testRememberMeFunctionality() throws LoginException {
         userData data = new userData();
         General general = new General(driver);
-        Actions actions = new Actions(driver);
         LoginLocators locators = new LoginLocators();
         ApiRequests requests = new ApiRequests(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
 
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         String password = generateStrongPassword();
         requests.createUser(data.getEmail(), password);

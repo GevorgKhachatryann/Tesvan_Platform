@@ -8,6 +8,7 @@ import locators.ForgetPasswordLocators;
 import locators.RegistrationLocators;
 import methods.ApiRequests;
 import methods.General;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
@@ -22,7 +23,6 @@ public class ForgotPasswordTest extends setup {
     @Test
     public void testForgotPassword() throws LoginException, IOException {
         userData data = new userData();
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
@@ -33,8 +33,9 @@ public class ForgotPasswordTest extends setup {
         requests.createUser(data.getEmail(), password);
         System.out.println(password);
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         general.clickElement(locators.forgotPassword);
         general.enterText(locators.emailField, data.getEmail());
         general.clickElement(locators.sendBtn);
@@ -59,13 +60,13 @@ public class ForgotPasswordTest extends setup {
 
     @Test
     public void testForgotPasswordWithInvalidEmailFormat() {
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
         ForgetPasswordLocators locators = new ForgetPasswordLocators();
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         general.clickElement(locators.forgotPassword);
         general.enterText(locators.emailField, Constants.INVALID_EMAIL);
         general.clickElement(locators.sendBtn);
@@ -75,14 +76,13 @@ public class ForgotPasswordTest extends setup {
     @Test
     public void testNoVerifiedUserErrorMessage() throws LoginException {
         userData data = new userData();
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
-        RegistrationLocators regLoc = new RegistrationLocators();
         ForgetPasswordLocators locators = new ForgetPasswordLocators();
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         requests.generateRandomEmailForTest();
         general.clickElement(locators.forgotPassword);
         general.enterText(locators.emailField, data.getEmail());
@@ -94,7 +94,6 @@ public class ForgotPasswordTest extends setup {
     @Test
     public void testForgotPasswordWithWeakPassword() throws LoginException, IOException {
         userData data = new userData();
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
@@ -105,8 +104,9 @@ public class ForgotPasswordTest extends setup {
         requests.createUser(data.getEmail(), password);
         System.out.println(password);
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         general.clickElement(locators.forgotPassword);
         general.enterText(locators.emailField, data.getEmail());
         general.clickElement(locators.sendBtn);
@@ -123,7 +123,6 @@ public class ForgotPasswordTest extends setup {
     @Test
     public void testForgotPasswordWithMismatchedPasswords() throws LoginException, IOException {
         userData data = new userData();
-        Actions actions = new Actions(driver);
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
         RegistrationLocators regLoc = new RegistrationLocators();
@@ -134,8 +133,9 @@ public class ForgotPasswordTest extends setup {
         requests.createUser(data.getEmail(), password);
         System.out.println(password);
         driver.get(url.LOGIN_URL);
-        actions.moveToElement(driver.findElement(regLoc.armLang)).perform();
-        general.clickElement(regLoc.eng);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
         general.clickElement(locators.forgotPassword);
         general.enterText(locators.emailField, data.getEmail());
         general.clickElement(locators.sendBtn);
