@@ -181,6 +181,8 @@ public class SettingsTests extends setup {
         general.clickElement(regLoc.loginBtn);
         general.waitForElementToBeVisible(regLoc.hello, 15);
         general.assertTextEquals(regLoc.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
+        driver.navigate().refresh();
+        general.waitForElementToBeVisible(locators.settingsIcon, 15);
         general.scrollToElement(locators.settingsIcon);
         general.waitForElementToBeVisible(locators.settingsIcon, 15);
         general.clickElement(locators.settingsIcon);
