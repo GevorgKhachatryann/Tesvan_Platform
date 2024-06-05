@@ -234,10 +234,11 @@ public class LoginTests extends setup {
         general.enterText(locators.password, password);
         general.clickElement(locators.rememberMe);
         general.clickElement(regLoc.loginBtn);
-        ((JavascriptExecutor) driver).executeScript("window.open()");
+        js.executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         driver.get(url.LOGIN_URL);
+        driver.navigate().refresh();
         general.waitForElementToBeVisible(regLoc.hello, 10);
         general.assertTextEquals(regLoc.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
         requests.deleteAccount(password);
