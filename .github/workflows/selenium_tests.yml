@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - master  # Adjust branch name as per your requirements
+  schedule:
+    - cron: '0 9 * * *'  # Runs every day at 9:00 AM UTC (1:00 PM Armenian time)
 
 jobs:
   build:
