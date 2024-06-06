@@ -231,7 +231,7 @@ public class RegistrationTest extends setup {
     }
 
     @Test
-    public void testRegisterWithUpdatedEmail() throws LoginException {
+    public void testRegisterWithUpdatedEmail() throws LoginException, IOException {
         userData data = new userData();
         General general = new General(driver);
         ApiRequests requests = new ApiRequests(driver);
@@ -243,10 +243,44 @@ public class RegistrationTest extends setup {
         js.executeScript("window.localStorage.setItem('language', 'en');");
         driver.navigate().refresh();
         regPage.register(data.getEmail());
+        System.out.println(data.getPassword());
         general.clickElement(locators.changeEmail);
         requests.generateRandomEmailForTest();
         general.enterText(locators.email, data.getEmail());
         general.clickElement(locators.changeEmailBtn);
-
+        requests.retrieveVerificationEmail();
+        String verificationLink = requests.extractVerificationLink(data.getRegistrationMail());
+        System.out.println(Constants.VERIFICATION_LINK + verificationLink);
+        driver.get(verificationLink);
+        general.waitForElementToBeClickable(locators.successMessage, 10);
+        general.assertTextEquals(locators.successMessage, Constants.SUCCESSFULLY_VERIFIED);
+        general.clickElement(locators.loginBtn);
+        general.waitForElementToBeClickable(locators.email, 10);
+        general.enterText(locators.email, data.getEmail());
+        general.enterText(locators.enterPassword, data.getPassword());
+        general.clickElement(locators.loginBtn);
+        general.waitForElementToBeClickable(locators.hello, 10);
+        general.assertTextEquals(locators.hello, Constants.HELLO_MESSAGE + data.getFirstName() + "!");
+        requests.deleteAccount(data.getPassword());
+    }
+    @Test
+    public void testRegisterWithWrongEmailFormat() throws LoginException {
+        userData data = new userData();
+        General general = new General(driver);
+        ApiRequests requests = new ApiRequests(driver);
+        RegistrationPage regPage = new RegistrationPage(driver);
+        RegistrationLocators locators = new RegistrationLocators();
+        requests.generateRandomEmailForTest();
+        driver.get(url.REGISTRATION_URL);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
+        regPage.register(data.getEmail());
+        System.out.println(data.getPassword());
+        general.clickElement(locators.changeEmail);
+        general.enterText(locators.email, Constants.INVALID_EMAIL);
+        general.clickElement(locators.changeEmailBtn);
+        general.waitForElementToBeClickable(locators.invalidEmail, 10);
+        general.assertTextEquals(locators.invalidEmail, Constants.EMAIL_IS_NOT_VALID);
     }
 }
