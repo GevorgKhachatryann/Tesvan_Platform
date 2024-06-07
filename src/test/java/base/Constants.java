@@ -24,5 +24,6 @@ public class Constants {
     public static final String SUCCESSFULLY_SENT = "  Your message has successfully been sent.";
     public static final String FIRST_NAME_IS_NOT_VALID = "First name is not valid";
     public static final String LAST_NAME_IS_NOT_VALID = "Last name is not valid";
+    public static final String INVALID_VERIFICATION_LINK = "We're sorry, but it looks like this verification link has already been used.";
 
 }

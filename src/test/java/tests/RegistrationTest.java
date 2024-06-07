@@ -283,4 +283,36 @@ public class RegistrationTest extends setup {
         general.waitForElementToBeClickable(locators.invalidEmail, 10);
         general.assertTextEquals(locators.invalidEmail, Constants.EMAIL_IS_NOT_VALID);
     }
+
+    @Test
+    public void testResendVerificationEmail() throws LoginException, IOException {
+        userData data = new userData();
+        General general = new General(driver);
+        ApiRequests requests = new ApiRequests(driver);
+        RegistrationPage regPage = new RegistrationPage(driver);
+        RegistrationLocators locators = new RegistrationLocators();
+
+        requests.generateRandomEmailForTest();
+        driver.get(url.REGISTRATION_URL);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.setItem('language', 'en');");
+        driver.navigate().refresh();
+        regPage.register(data.getEmail());
+        requests.retrieveVerificationEmail();
+        String initialVerificationLink = requests.extractVerificationLink(data.getRegistrationMail());
+        driver.get(initialVerificationLink);
+        general.waitForElementToBeClickable(locators.successMessage, 10);
+        general.assertTextEquals(locators.successMessage, Constants.SUCCESSFULLY_VERIFIED);
+        general.clickElement(locators.loginBtn);
+        driver.get(url.Verification);
+        general.clickElement(locators.resendLink);
+        requests.retrieveVerificationEmail();
+        String verificationLink = requests.extractVerificationLink(data.getRegistrationMail());
+        System.out.println(Constants.VERIFICATION_LINK + verificationLink);
+        driver.get(verificationLink);
+        general.waitForElementToBeClickable(locators.invalidLink, 10);
+        general.assertTextEquals(locators.invalidLink,Constants.INVALID_VERIFICATION_LINK);
+        requests.deleteAccount(data.getPassword());
+    }
+
 }

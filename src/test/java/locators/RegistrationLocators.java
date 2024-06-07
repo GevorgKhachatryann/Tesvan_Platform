@@ -40,5 +40,8 @@ public class RegistrationLocators {
     public By changeEmailBtn = By.xpath("//button[contains(text(), 'Change email address')]");
     public By armLang = By.xpath("//p[contains(text(),'Arm')]");
     public By eng = By.xpath("//p[contains(text(),'Eng')]");
+    public By resendLink = By.xpath("//button[contains(text(), 'Resend link')]");
+    public By invalidLink = By.xpath("//p[contains(text(), concat('We', \"'\", 're sorry, but it looks like this verification link has already been used.'))]");
+
 
 }
